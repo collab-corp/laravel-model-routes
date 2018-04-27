@@ -108,6 +108,23 @@ class RouteListBuilder
 	}
 
 	/**
+	 * Exclude the given methods
+	 * 
+	 * @param  ...string[] $methods 
+	 * @return $this          
+	 */
+	public function except(...$methods)
+	{
+		$methods = array_wrap(...$methods);
+
+		$this->routes = $this->routes()->except(
+			$this->qualifyRouteMethods($methods)
+		);
+
+		return $this;
+	}
+
+	/**
 	 * Alias for getResults.
 	 * 
 	 * @return \Illuminate\Support\Collection
