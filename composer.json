@@ -1,0 +1,44 @@
+{
+    "name": "sasin91/laravel-model-routes",
+    "description": ":package_description",
+    "keywords": [
+        "sasin91",
+        "laravel-model-routes"
+    ],
+    "homepage": "https://github.com/sasin91/laravel-model-routes",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonas Kervin Hansen",
+            "email": "jonas.kerwin.hansen@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/database": "^5.6",
+        "illuminate/routing": "^5.6",
+        "illuminate/support": "^5.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sasin91\\LaravelModelRoutes\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sasin91\\LaravelModelRoutes\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
