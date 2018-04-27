@@ -15,63 +15,72 @@ use Sasin91\LaravelModelRoutes\Tests\TestModel;
 
 class ModelRoutesTest extends TestCase
 {
+    protected $app;
+
     protected function setUp()
     {
         parent::setUp();
 
-        $container = new Container;
+        $this->app = new Container;
 
-        $container->singleton(Router::class, function ($container) {
-            return tap(new Router(new EventStub, $container), function ($router) {
-                $router->get('test')->name('test.index');
-                $router->get('test/{id}')->name('test.show');
-                $router->post('test')->name('test.store');
-                $router->delete('test/{id}')->name('test.delete');
+        $this->app->singleton(Router::class, function ($app) {
+            $router = new Router(new EventStub, $app);
 
-                dd($router->getRoutes()->getRoutesByName());
-            });
+            $router->get('test')->name('test.index');
+            $router->get('test/{id}')->name('test.show');
+            $router->post('test')->name('test.store');
+            $router->match(['PUT', 'PATCH'], 'test/{id}')->name('test.update');
+            $router->delete('test/{id}')->name('test.delete');
+
+            $router->getRoutes()->refreshNameLookups();
+
+            return $router;
         });
 
-        $container->make(Router::class);
-
-        $container->bind(Request::class, function ($container) {
+        $this->app->singleton(Request::class, function () {
             return Request::createFromGlobals();
         });
 
-        $container->bind(UrlGeneratorContract::class, function ($container) {
+        $this->app->bind(UrlGeneratorContract::class, function ($app) {
             return new UrlGenerator(
-                $container->make(Router::class)->getRoutes(),
-                $container->make(Request::class)
+                $app->make(Router::class)->getRoutes(),
+                $app->make(Request::class)
             );
         });
 
-        $container->bind(RouteUrlGenerator::class, function ($container) {
+        $this->app->bind(RouteUrlGenerator::class, function ($app) {
             return new RouteUrlGenerator(
-                $container->make(UrlGenerator::class),
-                $container->make(Request::class)
+                $app->make(UrlGenerator::class),
+                $app->make(Request::class)
             );
         });
 
         Container::setInstance(
-            $container
+            $this->app
         );
     }
 
     /** @test */
     function it_builds_the_available_named_route_urls_for_the_model() 
     {
-        // dd((new TestModel)->urls);
+        $this->assertEquals([
+            'test.index' => '/test#', 
+            'test.show' => '/test/1#',
+            'test.store' => '/test#', 
+            'test.update' => '/test/1#',
+            'test.delete' => '/test/1#'
+        ], ((new TestModel(['id' => 1]))->urls));
     }  
 
     /** @test */
    function it_lists_the_available_indexes() 
    {
-       
+       $this->markTestIncomplete();
    }   
 
    /** @test */
    function it_lists_the_indexes_starting_with_first_request_segment() 
    {
-       
+       $this->markTestIncomplete();
    } 
 }

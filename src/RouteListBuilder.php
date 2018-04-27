@@ -57,7 +57,7 @@ class RouteListBuilder
 	{
 		$this->model = $model;
 		$this->routeName = $this->modelRouteName($model);
-		
+
 		$this->whereModel($model);
 	}
 
@@ -83,7 +83,8 @@ class RouteListBuilder
 	public function whereModel(Model $model)
 	{
 		$this->routes = $this->routes()->filter(function ($route, $name) {
-			return starts_with($name, $this->routeName);
+			// Incensitively check if the route starts with the current routeName.
+			return mb_stripos($name, $this->routeName) === 0;
 		});
 
 		return $this;
@@ -122,11 +123,11 @@ class RouteListBuilder
 	 * @return \Illuminate\Support\Collection
 	 */
 	public function getResults()
-	{
+	{	
 		return $this->routes()->map(function ($route) {
 			return $this->url()->to(
-				$route, 
-				[$this->model->getRouteKeyName() => $this->model->getRouteKey()]
+				$route,
+				$this->routeParameters($route)
 			);
 		});
 	}
@@ -143,6 +144,19 @@ class RouteListBuilder
 		}
 
 		return $this->routes = $this->nameKeyedRoutes();
+	}
+
+	/**
+	 * Compose the route parameters
+	 * 
+	 * @param  \Illuminate\Routing\Route $route 
+	 * @return array       
+	 */
+	public function routeParameters($route)
+	{
+		return array_map(function ($key) {
+			return $this->model->$key;
+		}, $route->parameterNames());
 	}
 
 	/**
@@ -195,9 +209,7 @@ class RouteListBuilder
 			return $model->routeName();
 		}
 
-		$class = Str::lower(class_basename($model));
-
-		return Str::plural($class);
+		return Str::plural(class_basename($model));
 	}
 
 	/**
