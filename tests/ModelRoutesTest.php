@@ -83,4 +83,22 @@ class ModelRoutesTest extends TestCase
    {
        $this->markTestIncomplete();
    } 
+
+   /** @test */
+   function it_excludes_defined_routes() 
+   {
+       $this->markTestIncomplete();
+   } 
+
+   /** @test */
+   function it_filters_the_defined_routes() 
+   {
+       $this->markTestIncomplete();
+   } 
+
+   /** @test */
+   function it_filters_only_resource_methods() 
+   {
+       $this->markTestIncomplete();
+   } 
 }
