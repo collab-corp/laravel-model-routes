@@ -1,9 +1,9 @@
 <?php
 
-namespace Sasin91\LaravelModelRoutes\Tests;
+namespace CollabCorp\LaravelModelRoutes\Tests;
 
 use Illuminate\Database\Eloquent\Model;
-use Sasin91\LaravelModelRoutes\ModelRoutes;
+use CollabCorp\LaravelModelRoutes\ModelRoutes;
 
 class TestModel extends Model
 {

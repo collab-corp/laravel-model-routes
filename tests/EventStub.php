@@ -1,6 +1,6 @@
 <?php
 
-namespace Sasin91\LaravelModelRoutes\Tests;
+namespace CollabCorp\LaravelModelRoutes\Tests;
 
 use Illuminate\Contracts\Events\Dispatcher;
 

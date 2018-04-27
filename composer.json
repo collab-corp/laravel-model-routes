@@ -1,11 +1,11 @@
 {
-    "name": "sasin91/laravel-model-routes",
-    "description": ":package_description",
+    "name": "collab-corp/laravel-model-routes",
+    "description": "Easily generate the urls of your eloquent models.",
     "keywords": [
-        "sasin91",
+        "collab-corp",
         "laravel-model-routes"
     ],
-    "homepage": "https://github.com/sasin91/laravel-model-routes",
+    "homepage": "https://github.com/collab-corp/laravel-model-routes",
     "license": "MIT",
     "authors": [
         {
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sasin91\\LaravelModelRoutes\\": "src"
+            "CollabCorp\\LaravelModelRoutes\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sasin91\\LaravelModelRoutes\\Tests\\": "tests"
+            "CollabCorp\\LaravelModelRoutes\\Tests\\": "tests"
         }
     },
     "scripts": {

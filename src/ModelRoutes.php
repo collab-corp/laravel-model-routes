@@ -1,6 +1,6 @@
 <?php
 
-namespace Sasin91\LaravelModelRoutes;
+namespace CollabCorp\LaravelModelRoutes;
 
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Contracts\Support\Arrayable;
@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Sasin91\LaravelModelRoutes\RouteListBuilder;
+use CollabCorp\LaravelModelRoutes\RouteListBuilder;
 
 class ModelRoutes implements Jsonable, Arrayable
 {
 	/**
 	 * Our route list builder.
 	 * 
-	 * @var \Sasin91\LaravelModelRoutes\RouteListBuilder
+	 * @var \CollabCorp\LaravelModelRoutes\RouteListBuilder
 	 */
 	protected $builder;
 

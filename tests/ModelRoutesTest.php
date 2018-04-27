@@ -1,6 +1,6 @@
 <?php
 
-namespace Sasin91\LaravelModelRoutes\Tests;
+namespace CollabCorp\LaravelModelRoutes\Tests;
 
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
@@ -10,8 +10,8 @@ use Illuminate\Routing\RouteUrlGenerator;
 use Illuminate\Routing\Router;
 use Illuminate\Routing\UrlGenerator;
 use PHPUnit\Framework\TestCase;
-use Sasin91\LaravelModelRoutes\Tests\EventStub;
-use Sasin91\LaravelModelRoutes\Tests\TestModel;
+use CollabCorp\LaravelModelRoutes\Tests\EventStub;
+use CollabCorp\LaravelModelRoutes\Tests\TestModel;
 
 class ModelRoutesTest extends TestCase
 {

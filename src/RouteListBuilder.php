@@ -1,6 +1,6 @@
 <?php
 
-namespace Sasin91\LaravelModelRoutes;
+namespace CollabCorp\LaravelModelRoutes;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
